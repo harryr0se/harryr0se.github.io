@@ -217,7 +217,7 @@ SplitString(item.Name);
 </code></pre></td></tr></table>
 </div>
 </div>
-<p>Now we&rsquo;re warned about our usage we must decide howe we want to deal with conditions:</p>
+<p>Now we&rsquo;re warned about our usage we must decide how we want to deal with conditions:</p>
 <blockquote>
 <p>Dereference of a possibly null reference.</p>
 </blockquote>
@@ -267,7 +267,7 @@ Classes must provide non null default values for their members, either via const
 </code></pre></td></tr></table>
 </div>
 </div>
-<p>I&rsquo;ve found that using the constructor to fix this warning has created (in my project) a move closer towards types being immutable after creation and made it clearer where a types properties and fields are mutated.</p>
+<p>I&rsquo;ve found that using the constructor to fix this warning has created (in my project) a move closer towards types being immutable after creation and made it clearer where a type&rsquo;s properties and fields are mutated.</p>
 <h2 id="gotchas">Gotchas</h2>
 <p>I&rsquo;m a pretty big fan of nullable references, I can&rsquo;t imagine I&rsquo;ll start a new C# project without it from now on. But it did have a few points that confused me at the start.</p>
 <p>Hopefully they&rsquo;ll help clear things up for you too 😊</p>
@@ -278,7 +278,7 @@ Classes must provide non null default values for their members, either via const
 <p>There&rsquo;s no runtime difference between a non-nullable reference type and a nullable reference type. The compiler doesn&rsquo;t add any runtime checking for non-nullable reference types.</p>
 </blockquote>
 <h3 id="its-not-about-removing-nulls-its-about-declaring-intent">It&rsquo;s not about removing nulls, it&rsquo;s about declaring intent</h3>
-<p>As mentioned in this Microsoft <a href="https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references">documentation</a>, it&rsquo;s best not to think of this feature as a means of removing null from your code. It&rsquo;s better to think of it as an addition to your toolbox for creating high quality code.</p>
+<p>As mentioned in this Microsoft <a href="https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references">documentation</a>, it&rsquo;s best not to think of this feature as a means of removing null from your code. It&rsquo;s better to think of it as an addition to your toolbox for creating higher quality code with clearer intent.</p>
 <blockquote>
 <p>Don&rsquo;t use this feature to remove all null values from your code. Rather, you should declare your intent to the compiler and other developers that read your code</p>
 </blockquote>
@@ -299,7 +299,7 @@ Classes must provide non null default values for their members, either via const
 </div>
 </div>
 <h2 id="conclusion">Conclusion</h2>
-<p>Modern applications rely on so much state and data flow between systems and external libraries that any additional intent that we can bake into our code is in my mind a solid move forward towards improving code quality. Especially when it&rsquo;s combined with first class analysis built into the complier.</p>
+<p>Modern applications rely on so much state and data flow between systems and external libraries that any additional intent that we can bake into our code is, in my mind a solid move forward towards improving code quality. Especially when it&rsquo;s combined with first class analysis built into the complier.</p>
 
       </div>
 

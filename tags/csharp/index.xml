@@ -105,7 +105,7 @@ SplitString(item.Name);
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;Now we&amp;rsquo;re warned about our usage we must decide howe we want to deal with conditions:&lt;/p&gt;
+&lt;p&gt;Now we&amp;rsquo;re warned about our usage we must decide how we want to deal with conditions:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Dereference of a possibly null reference.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -155,7 +155,7 @@ Classes must provide non null default values for their members, either via const
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;I&amp;rsquo;ve found that using the constructor to fix this warning has created (in my project) a move closer towards types being immutable after creation and made it clearer where a types properties and fields are mutated.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve found that using the constructor to fix this warning has created (in my project) a move closer towards types being immutable after creation and made it clearer where a type&amp;rsquo;s properties and fields are mutated.&lt;/p&gt;
 &lt;h2 id=&#34;gotchas&#34;&gt;Gotchas&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;m a pretty big fan of nullable references, I can&amp;rsquo;t imagine I&amp;rsquo;ll start a new C# project without it from now on. But it did have a few points that confused me at the start.&lt;/p&gt;
 &lt;p&gt;Hopefully they&amp;rsquo;ll help clear things up for you too 😊&lt;/p&gt;
@@ -166,7 +166,7 @@ Classes must provide non null default values for their members, either via const
 &lt;p&gt;There&amp;rsquo;s no runtime difference between a non-nullable reference type and a nullable reference type. The compiler doesn&amp;rsquo;t add any runtime checking for non-nullable reference types.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;its-not-about-removing-nulls-its-about-declaring-intent&#34;&gt;It&amp;rsquo;s not about removing nulls, it&amp;rsquo;s about declaring intent&lt;/h3&gt;
-&lt;p&gt;As mentioned in this Microsoft &lt;a href=&#34;https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references&#34;&gt;documentation&lt;/a&gt;, it&amp;rsquo;s best not to think of this feature as a means of removing null from your code. It&amp;rsquo;s better to think of it as an addition to your toolbox for creating high quality code.&lt;/p&gt;
+&lt;p&gt;As mentioned in this Microsoft &lt;a href=&#34;https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references&#34;&gt;documentation&lt;/a&gt;, it&amp;rsquo;s best not to think of this feature as a means of removing null from your code. It&amp;rsquo;s better to think of it as an addition to your toolbox for creating higher quality code with clearer intent.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Don&amp;rsquo;t use this feature to remove all null values from your code. Rather, you should declare your intent to the compiler and other developers that read your code&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -187,7 +187,7 @@ Classes must provide non null default values for their members, either via const
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;Modern applications rely on so much state and data flow between systems and external libraries that any additional intent that we can bake into our code is in my mind a solid move forward towards improving code quality. Especially when it&amp;rsquo;s combined with first class analysis built into the complier.&lt;/p&gt;
+&lt;p&gt;Modern applications rely on so much state and data flow between systems and external libraries that any additional intent that we can bake into our code is, in my mind a solid move forward towards improving code quality. Especially when it&amp;rsquo;s combined with first class analysis built into the complier.&lt;/p&gt;
 </description>
     </item>
     
