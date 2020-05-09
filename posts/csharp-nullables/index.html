@@ -135,7 +135,7 @@
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">string</span> myNullString = <span style="color:#66d9ef">null</span>;
 </code></pre></div></p>
 <p>However, the key behind the new feature is <em>not</em> to enable reference types to <em>be</em> nullable, but to make your code more explicit about <em>which</em> reference type variables can be null.</p>
-<p>In fact, that little snippet above actually provides the following compiler warning when using the new feature:</p>
+<p>In fact, that little snippet above actually provides the following compiler warning when using nullable references:</p>
 <blockquote>
 <p>Converting null literal or possible null value to non-nullable type.</p>
 </blockquote>
@@ -180,9 +180,9 @@ We get the following compiler warning:</p>
 <p>Possible null reference argument for parameter &lsquo;str&rsquo; in &lsquo;project.SplitString&rsquo;.</p>
 </blockquote>
 <p>A nice, clear warning that <code>SplitString</code> has explicitly indicated that it wants a valid string,
-If we want to update <code>SplitString</code> to state that it&rsquo;s happy to deal with null strings to, then we simply change  parameter <code>str</code> type to <code>string?</code></p>
+If we want to update <code>SplitString</code> to state that it&rsquo;s happy to deal with null strings too, then we simply change  parameter <code>str</code> type to <code>string?</code></p>
 <h2 id="why">Why?</h2>
-<p>I&rsquo;ve personally seen the following benefits of the new feature in my new project:</p>
+<p>I&rsquo;ve personally seen the following benefits of nullable references in my new project:</p>
 <h3 id="more-explicit-intent">More explicit intent</h3>
 <p>It allows you to be clear about the expectations of your code, you either expect input of a nullable type or you don&rsquo;t.
 Same goes for return types, you can now be much clearer that a function may return null in certain circumstances.</p>
@@ -269,7 +269,7 @@ Classes must provide non null default values for their members, either via const
 </div>
 <p>I&rsquo;ve found that using the constructor to fix this warning has created (in my project) a move closer towards types being immutable after creation and made it clearer where a types properties and fields are mutated.</p>
 <h2 id="gotchas">Gotchas</h2>
-<p>I&rsquo;m a pretty big fan of the new feature, I can&rsquo;t imagine I&rsquo;ll start a new C# project without it from now on. But it did have a few points that confused me at the start.</p>
+<p>I&rsquo;m a pretty big fan of nullable references, I can&rsquo;t imagine I&rsquo;ll start a new C# project without it from now on. But it did have a few points that confused me at the start.</p>
 <p>Hopefully they&rsquo;ll help clear things up for you too 😊</p>
 <h3 id="its-entirely-syntactic-sugar">It&rsquo;s entirely syntactic sugar</h3>
 <p>None of the above examples will stop a non nullable type from being null, this is a feature that enables better warnings at compilation time.</p>
@@ -283,7 +283,7 @@ Classes must provide non null default values for their members, either via const
 <p>Don&rsquo;t use this feature to remove all null values from your code. Rather, you should declare your intent to the compiler and other developers that read your code</p>
 </blockquote>
 <h3 id="warningsaserrors-project-setting-doesnt-work">WarningsAsErrors project setting doesn&rsquo;t work</h3>
-<p>We found that enabling the <code>&lt;WarningsAsErrors&gt;true&lt;/WarningsAsErrors&gt;</code> setting in our C# project file still didn&rsquo;t flag the nullable warnings as error and had to add them manually, here&rsquo;s what we have in our projects.</p>
+<p>We found that enabling the <code>&lt;WarningsAsErrors&gt;true&lt;/WarningsAsErrors&gt;</code> setting in our C# project file still didn&rsquo;t flag the nullable warnings as errors and we had to add them manually, here&rsquo;s what we have in our projects.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1

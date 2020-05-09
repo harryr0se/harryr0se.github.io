@@ -23,7 +23,7 @@
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; myNullString = &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;However, the key behind the new feature is &lt;em&gt;not&lt;/em&gt; to enable reference types to &lt;em&gt;be&lt;/em&gt; nullable, but to make your code more explicit about &lt;em&gt;which&lt;/em&gt; reference type variables can be null.&lt;/p&gt;
-&lt;p&gt;In fact, that little snippet above actually provides the following compiler warning when using the new feature:&lt;/p&gt;
+&lt;p&gt;In fact, that little snippet above actually provides the following compiler warning when using nullable references:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Converting null literal or possible null value to non-nullable type.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -68,9 +68,9 @@ We get the following compiler warning:&lt;/p&gt;
 &lt;p&gt;Possible null reference argument for parameter &amp;lsquo;str&amp;rsquo; in &amp;lsquo;project.SplitString&amp;rsquo;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;A nice, clear warning that &lt;code&gt;SplitString&lt;/code&gt; has explicitly indicated that it wants a valid string,
-If we want to update &lt;code&gt;SplitString&lt;/code&gt; to state that it&amp;rsquo;s happy to deal with null strings to, then we simply change  parameter &lt;code&gt;str&lt;/code&gt; type to &lt;code&gt;string?&lt;/code&gt;&lt;/p&gt;
+If we want to update &lt;code&gt;SplitString&lt;/code&gt; to state that it&amp;rsquo;s happy to deal with null strings too, then we simply change  parameter &lt;code&gt;str&lt;/code&gt; type to &lt;code&gt;string?&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id=&#34;why&#34;&gt;Why?&lt;/h2&gt;
-&lt;p&gt;I&amp;rsquo;ve personally seen the following benefits of the new feature in my new project:&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve personally seen the following benefits of nullable references in my new project:&lt;/p&gt;
 &lt;h3 id=&#34;more-explicit-intent&#34;&gt;More explicit intent&lt;/h3&gt;
 &lt;p&gt;It allows you to be clear about the expectations of your code, you either expect input of a nullable type or you don&amp;rsquo;t.
 Same goes for return types, you can now be much clearer that a function may return null in certain circumstances.&lt;/p&gt;
@@ -157,7 +157,7 @@ Classes must provide non null default values for their members, either via const
 &lt;/div&gt;
 &lt;p&gt;I&amp;rsquo;ve found that using the constructor to fix this warning has created (in my project) a move closer towards types being immutable after creation and made it clearer where a types properties and fields are mutated.&lt;/p&gt;
 &lt;h2 id=&#34;gotchas&#34;&gt;Gotchas&lt;/h2&gt;
-&lt;p&gt;I&amp;rsquo;m a pretty big fan of the new feature, I can&amp;rsquo;t imagine I&amp;rsquo;ll start a new C# project without it from now on. But it did have a few points that confused me at the start.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m a pretty big fan of nullable references, I can&amp;rsquo;t imagine I&amp;rsquo;ll start a new C# project without it from now on. But it did have a few points that confused me at the start.&lt;/p&gt;
 &lt;p&gt;Hopefully they&amp;rsquo;ll help clear things up for you too 😊&lt;/p&gt;
 &lt;h3 id=&#34;its-entirely-syntactic-sugar&#34;&gt;It&amp;rsquo;s entirely syntactic sugar&lt;/h3&gt;
 &lt;p&gt;None of the above examples will stop a non nullable type from being null, this is a feature that enables better warnings at compilation time.&lt;/p&gt;
@@ -171,7 +171,7 @@ Classes must provide non null default values for their members, either via const
 &lt;p&gt;Don&amp;rsquo;t use this feature to remove all null values from your code. Rather, you should declare your intent to the compiler and other developers that read your code&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;warningsaserrors-project-setting-doesnt-work&#34;&gt;WarningsAsErrors project setting doesn&amp;rsquo;t work&lt;/h3&gt;
-&lt;p&gt;We found that enabling the &lt;code&gt;&amp;lt;WarningsAsErrors&amp;gt;true&amp;lt;/WarningsAsErrors&amp;gt;&lt;/code&gt; setting in our C# project file still didn&amp;rsquo;t flag the nullable warnings as error and had to add them manually, here&amp;rsquo;s what we have in our projects.&lt;/p&gt;
+&lt;p&gt;We found that enabling the &lt;code&gt;&amp;lt;WarningsAsErrors&amp;gt;true&amp;lt;/WarningsAsErrors&amp;gt;&lt;/code&gt; setting in our C# project file still didn&amp;rsquo;t flag the nullable warnings as errors and we had to add them manually, here&amp;rsquo;s what we have in our projects.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
 &lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
