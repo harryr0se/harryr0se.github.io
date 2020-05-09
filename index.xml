@@ -155,7 +155,7 @@ Classes must provide non null default values for their members, either via const
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;I&amp;rsquo;ve found that using the constructor to fix this warning has created (&lt;em&gt;in my project&lt;/em&gt;) a move closer towards types being immutable after creation and made it clearer where a types properties and fields are mutated.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve found that using the constructor to fix this warning has created (in my project) a move closer towards types being immutable after creation and made it clearer where a types properties and fields are mutated.&lt;/p&gt;
 &lt;h2 id=&#34;gotchas&#34;&gt;Gotchas&lt;/h2&gt;
 &lt;p&gt;I&amp;rsquo;m a pretty big fan of the new feature, I can&amp;rsquo;t imagine I&amp;rsquo;ll start a new C# project without it from now on. But it did have a few points that confused me at the start.&lt;/p&gt;
 &lt;p&gt;Hopefully they&amp;rsquo;ll help clear things up for you too 😊&lt;/p&gt;
