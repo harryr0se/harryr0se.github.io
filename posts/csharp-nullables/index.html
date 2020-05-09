@@ -135,7 +135,7 @@
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">string</span> myNullString = <span style="color:#66d9ef">null</span>;
 </code></pre></div></p>
 <p>However, the key behind the new feature is <em>not</em> to enable reference types to <em>be</em> nullable, but to make your code more explicit about <em>which</em> reference type variables can be null.</p>
-<p>In fact, that little snippet above actually provides the following compiler warning when enabled using the new feature:</p>
+<p>In fact, that little snippet above actually provides the following compiler warning when using the new feature:</p>
 <blockquote>
 <p>Converting null literal or possible null value to non-nullable type.</p>
 </blockquote>
@@ -145,7 +145,7 @@
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">string?</span> myNullString = <span style="color:#66d9ef">null</span>;
 </code></pre></div>
 <p>But it does a lot more than that!</p>
-<p>Now code that makes use of that variable will have new warnings if they don&rsquo;t check the variable for null, or try to pass it to use that states it wants a non nullable <code>string</code> type</p>
+<p>Now code that makes use of that variable will produce compiler warnings if they don&rsquo;t check the variable for null, or try to pass it to a function that states it wants a non nullable <code>string</code> type</p>
 <p>For example lets look at this fascinating function:
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">

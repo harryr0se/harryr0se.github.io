@@ -23,7 +23,7 @@
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; myNullString = &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;However, the key behind the new feature is &lt;em&gt;not&lt;/em&gt; to enable reference types to &lt;em&gt;be&lt;/em&gt; nullable, but to make your code more explicit about &lt;em&gt;which&lt;/em&gt; reference type variables can be null.&lt;/p&gt;
-&lt;p&gt;In fact, that little snippet above actually provides the following compiler warning when enabled using the new feature:&lt;/p&gt;
+&lt;p&gt;In fact, that little snippet above actually provides the following compiler warning when using the new feature:&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Converting null literal or possible null value to non-nullable type.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -33,7 +33,7 @@
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string?&lt;/span&gt; myNullString = &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;But it does a lot more than that!&lt;/p&gt;
-&lt;p&gt;Now code that makes use of that variable will have new warnings if they don&amp;rsquo;t check the variable for null, or try to pass it to use that states it wants a non nullable &lt;code&gt;string&lt;/code&gt; type&lt;/p&gt;
+&lt;p&gt;Now code that makes use of that variable will produce compiler warnings if they don&amp;rsquo;t check the variable for null, or try to pass it to a function that states it wants a non nullable &lt;code&gt;string&lt;/code&gt; type&lt;/p&gt;
 &lt;p&gt;For example lets look at this fascinating function:
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
 &lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
