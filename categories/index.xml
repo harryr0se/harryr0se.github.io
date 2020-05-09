@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Harry Rose</title>
-    <link>https://harryr0se.github.io/categories/</link>
+    <link>https://harryrose.dev/categories/</link>
     <description>Recent content in Categories on Harry Rose</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     
-	<atom:link href="https://harryr0se.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://harryrose.dev/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
