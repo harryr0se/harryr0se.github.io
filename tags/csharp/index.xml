@@ -18,7 +18,7 @@
       
       <guid>https://harryrose.dev/posts/csharp-nullables/</guid>
       <description>&lt;p&gt;Recently I started working on a new C# project and was introduced by a colleague to C# 8&amp;rsquo;s new &lt;a href=&#34;https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references&#34;&gt;nullable references&lt;/a&gt; feature.&lt;/p&gt;
-&lt;p&gt;At first this statement might sound odd (&lt;em&gt;it did to me&lt;/em&gt;), reference types within C# have always been nullable, right?
+&lt;p&gt;At first this statement might sound odd (it did to me), reference types within C# have always been nullable, right?
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cs&#34; data-lang=&#34;cs&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Tada, a null string!
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; myNullString = &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
@@ -93,7 +93,7 @@ Same goes for return types, you can now be much clearer that a function may retu
 &lt;/div&gt;
 The fact that &lt;code&gt;GetItemById&lt;/code&gt; can return null is clear, if we weren&amp;rsquo;t using nullables, users would have to look at the documentation for the function to work out if they needed to handle null results and the compiler wouldn&amp;rsquo;t be able to provide them with warnings.&lt;/p&gt;
 &lt;h3 id=&#34;it-forces-you-to-handle-nullable-paths&#34;&gt;It forces you to handle nullable paths&lt;/h3&gt;
-&lt;p&gt;Due to the compilers code analysis, if you have warnings as errors (&lt;em&gt;like we do&lt;/em&gt;); the new feature forces you to consider your dataflow better.&lt;/p&gt;
+&lt;p&gt;Due to the compilers code analysis, if you have warnings as errors (like we do); the new feature forces you to consider your dataflow better.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
 &lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
@@ -110,8 +110,8 @@ SplitString(item.Name);
 &lt;p&gt;Dereference of a possibly null reference.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h3 id=&#34;enforces-types-to-be-valid-upon-construction&#34;&gt;Enforces types to be valid upon construction&lt;/h3&gt;
-&lt;p&gt;Due to the fact that all non nullable reference types must be initialized (otherwise they&amp;rsquo;ll default to null).
-Classes must provide non null default values for their members, either via constructors (&lt;em&gt;my preferred method&lt;/em&gt;) or by default values at the member level&lt;/p&gt;
+&lt;p&gt;Due to the fact that all non nullable reference types must be initialized, otherwise they&amp;rsquo;ll default to null.
+Classes must provide non null default values for their members, either via constructors (my preferred method) or by default values at the member level&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
 &lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
@@ -186,6 +186,8 @@ Classes must provide non null default values for their members, either via const
 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;WarningsAsErrors&amp;gt;&lt;/span&gt;CS8600;CS8602;CS8603;CS8601;CS8618;CS8604&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/WarningsAsErrors&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Modern applications rely on so much state and data flow between systems and external libraries that any additional intent that we can bake into our code is in my mind a solid move forward towards improving code quality. Especially when it&amp;rsquo;s combined with first class analysis built into the complier.&lt;/p&gt;
 </description>
     </item>
     

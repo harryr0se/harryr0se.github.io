@@ -130,7 +130,7 @@
       <div>
         
         <p>Recently I started working on a new C# project and was introduced by a colleague to C# 8&rsquo;s new <a href="https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references">nullable references</a> feature.</p>
-<p>At first this statement might sound odd (<em>it did to me</em>), reference types within C# have always been nullable, right?
+<p>At first this statement might sound odd (it did to me), reference types within C# have always been nullable, right?
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">// Tada, a null string!
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">string</span> myNullString = <span style="color:#66d9ef">null</span>;
 </code></pre></div></p>
@@ -205,7 +205,7 @@ Same goes for return types, you can now be much clearer that a function may retu
 </div>
 The fact that <code>GetItemById</code> can return null is clear, if we weren&rsquo;t using nullables, users would have to look at the documentation for the function to work out if they needed to handle null results and the compiler wouldn&rsquo;t be able to provide them with warnings.</p>
 <h3 id="it-forces-you-to-handle-nullable-paths">It forces you to handle nullable paths</h3>
-<p>Due to the compilers code analysis, if you have warnings as errors (<em>like we do</em>); the new feature forces you to consider your dataflow better.</p>
+<p>Due to the compilers code analysis, if you have warnings as errors (like we do); the new feature forces you to consider your dataflow better.</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -222,8 +222,8 @@ SplitString(item.Name);
 <p>Dereference of a possibly null reference.</p>
 </blockquote>
 <h3 id="enforces-types-to-be-valid-upon-construction">Enforces types to be valid upon construction</h3>
-<p>Due to the fact that all non nullable reference types must be initialized (otherwise they&rsquo;ll default to null).
-Classes must provide non null default values for their members, either via constructors (<em>my preferred method</em>) or by default values at the member level</p>
+<p>Due to the fact that all non nullable reference types must be initialized, otherwise they&rsquo;ll default to null.
+Classes must provide non null default values for their members, either via constructors (my preferred method) or by default values at the member level</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
@@ -298,6 +298,8 @@ Classes must provide non null default values for their members, either via const
 <span style="color:#f92672">&lt;WarningsAsErrors&gt;</span>CS8600;CS8602;CS8603;CS8601;CS8618;CS8604<span style="color:#f92672">&lt;/WarningsAsErrors&gt;</span></code></pre></td></tr></table>
 </div>
 </div>
+<h2 id="conclusion">Conclusion</h2>
+<p>Modern applications rely on so much state and data flow between systems and external libraries that any additional intent that we can bake into our code is in my mind a solid move forward towards improving code quality. Especially when it&rsquo;s combined with first class analysis built into the complier.</p>
 
       </div>
 
