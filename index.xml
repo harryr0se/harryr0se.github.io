@@ -23,8 +23,10 @@
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;string&lt;/span&gt; myNullString = &lt;span style=&#34;color:#66d9ef&#34;&gt;null&lt;/span&gt;;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;However, the key behind the new feature is &lt;em&gt;not&lt;/em&gt; to enable reference types to &lt;em&gt;be&lt;/em&gt; nullable, but to make your code more explicit about &lt;em&gt;which&lt;/em&gt; reference type variables can be null.&lt;/p&gt;
-&lt;p&gt;In fact, that little snippet above actually provides the following compiler warning when enabled using the new feature.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;&amp;quot;Converting null literal or possible null value to non-nullable type.&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;In fact, that little snippet above actually provides the following compiler warning when enabled using the new feature:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Converting null literal or possible null value to non-nullable type.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h2 id=&#34;so-what-do-i-do&#34;&gt;So what do I do?&lt;/h2&gt;
 &lt;p&gt;In order to get rid of the new compiler warning we now have to use the &lt;code&gt;?&lt;/code&gt; operator after the type name, this marks the variable as being nullable.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cs&#34; data-lang=&#34;cs&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Tada, an explicitly nullable string!
@@ -62,7 +64,9 @@ SplitString(myNullString);
 &lt;/div&gt;
 &lt;/div&gt;
 We get the following compiler warning:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;Possible null reference argument for parameter &#39;str&#39; in &#39;project.SplitString&#39;.&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Possible null reference argument for parameter &amp;lsquo;str&amp;rsquo; in &amp;lsquo;project.SplitString&amp;rsquo;.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;A nice, clear warning that &lt;code&gt;SplitString&lt;/code&gt; has explicitly indicated that it wants a valid string,
 If we want to update &lt;code&gt;SplitString&lt;/code&gt; to state that it&amp;rsquo;s happy to deal with null strings to, then we simply change  parameter &lt;code&gt;str&lt;/code&gt; type to &lt;code&gt;string?&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id=&#34;why&#34;&gt;Why?&lt;/h2&gt;
@@ -90,7 +94,7 @@ Same goes for return types, you can now be much clearer that a function may retu
 The fact that &lt;code&gt;GetItemById&lt;/code&gt; can return null is clear, if we weren&amp;rsquo;t using nullables, users would have to look at the documentation for the function to work out if they needed to handle null results and the compiler wouldn&amp;rsquo;t be able to provide them with warnings.&lt;/p&gt;
 &lt;h3 id=&#34;it-forces-you-to-handle-nullable-paths&#34;&gt;It forces you to handle nullable paths&lt;/h3&gt;
 &lt;p&gt;Due to the compilers code analysis, if you have warnings as errors (&lt;em&gt;like we do&lt;/em&gt;); the new feature forces you to consider your dataflow better.&lt;/p&gt;
-&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
 &lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;
 &lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;1
 &lt;/span&gt;&lt;span style=&#34;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34;&gt;2
@@ -101,8 +105,10 @@ SplitString(item.Name);
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;code&gt;Dereference of a possibly null reference.&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Now we&amp;rsquo;re warned about our usage we must decide howe we want to deal with conditions.&lt;/p&gt;
+&lt;p&gt;Now we&amp;rsquo;re warned about our usage we must decide howe we want to deal with conditions:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Dereference of a possibly null reference.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h3 id=&#34;enforces-types-to-be-valid-upon-construction&#34;&gt;Enforces types to be valid upon construction&lt;/h3&gt;
 &lt;p&gt;Due to the fact that all non nullable reference types must be initialized (otherwise they&amp;rsquo;ll default to null).
 Classes must provide non null default values for their members, either via constructors (&lt;em&gt;my preferred method&lt;/em&gt;) or by default values at the member level&lt;/p&gt;
@@ -121,7 +127,10 @@ Classes must provide non null default values for their members, either via const
 &lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;code&gt;Non-nullable property &#39;Name&#39; is uninitialized. Consider declaring the property as nullable.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;If we don&amp;rsquo;t, the compiler produces the following:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Non-nullable property &amp;lsquo;Name&amp;rsquo; is uninitialized. Consider declaring the property as nullable.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;If we&amp;rsquo;re really happy with an item optionally having a name then we can change it to &lt;code&gt;string?&lt;/code&gt; otherwise, we must make sure that an Item has a defined non null &lt;code&gt;Name&lt;/code&gt; upon construction&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;
 &lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;

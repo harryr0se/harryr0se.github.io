@@ -135,8 +135,10 @@
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">string</span> myNullString = <span style="color:#66d9ef">null</span>;
 </code></pre></div></p>
 <p>However, the key behind the new feature is <em>not</em> to enable reference types to <em>be</em> nullable, but to make your code more explicit about <em>which</em> reference type variables can be null.</p>
-<p>In fact, that little snippet above actually provides the following compiler warning when enabled using the new feature.</p>
-<p><code>&quot;Converting null literal or possible null value to non-nullable type.&quot;</code></p>
+<p>In fact, that little snippet above actually provides the following compiler warning when enabled using the new feature:</p>
+<blockquote>
+<p>Converting null literal or possible null value to non-nullable type.</p>
+</blockquote>
 <h2 id="so-what-do-i-do">So what do I do?</h2>
 <p>In order to get rid of the new compiler warning we now have to use the <code>?</code> operator after the type name, this marks the variable as being nullable.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">// Tada, an explicitly nullable string!
@@ -174,7 +176,9 @@ SplitString(myNullString);
 </div>
 </div>
 We get the following compiler warning:</p>
-<p><code>Possible null reference argument for parameter 'str' in 'project.SplitString'.</code></p>
+<blockquote>
+<p>Possible null reference argument for parameter &lsquo;str&rsquo; in &lsquo;project.SplitString&rsquo;.</p>
+</blockquote>
 <p>A nice, clear warning that <code>SplitString</code> has explicitly indicated that it wants a valid string,
 If we want to update <code>SplitString</code> to state that it&rsquo;s happy to deal with null strings to, then we simply change  parameter <code>str</code> type to <code>string?</code></p>
 <h2 id="why">Why?</h2>
@@ -202,7 +206,7 @@ Same goes for return types, you can now be much clearer that a function may retu
 The fact that <code>GetItemById</code> can return null is clear, if we weren&rsquo;t using nullables, users would have to look at the documentation for the function to work out if they needed to handle null results and the compiler wouldn&rsquo;t be able to provide them with warnings.</p>
 <h3 id="it-forces-you-to-handle-nullable-paths">It forces you to handle nullable paths</h3>
 <p>Due to the compilers code analysis, if you have warnings as errors (<em>like we do</em>); the new feature forces you to consider your dataflow better.</p>
-<p><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
@@ -213,8 +217,10 @@ SplitString(item.Name);
 </code></pre></td></tr></table>
 </div>
 </div>
-<code>Dereference of a possibly null reference.</code></p>
-<p>Now we&rsquo;re warned about our usage we must decide howe we want to deal with conditions.</p>
+<p>Now we&rsquo;re warned about our usage we must decide howe we want to deal with conditions:</p>
+<blockquote>
+<p>Dereference of a possibly null reference.</p>
+</blockquote>
 <h3 id="enforces-types-to-be-valid-upon-construction">Enforces types to be valid upon construction</h3>
 <p>Due to the fact that all non nullable reference types must be initialized (otherwise they&rsquo;ll default to null).
 Classes must provide non null default values for their members, either via constructors (<em>my preferred method</em>) or by default values at the member level</p>
@@ -233,7 +239,10 @@ Classes must provide non null default values for their members, either via const
 </code></pre></td></tr></table>
 </div>
 </div>
-<p><code>Non-nullable property 'Name' is uninitialized. Consider declaring the property as nullable.</code></p>
+<p>If we don&rsquo;t, the compiler produces the following:</p>
+<blockquote>
+<p>Non-nullable property &lsquo;Name&rsquo; is uninitialized. Consider declaring the property as nullable.</p>
+</blockquote>
 <p>If we&rsquo;re really happy with an item optionally having a name then we can change it to <code>string?</code> otherwise, we must make sure that an Item has a defined non null <code>Name</code> upon construction</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
