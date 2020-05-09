@@ -3,6 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://harryrose.dev/tags/csharp/</loc>
+    <lastmod>2020-05-09T04:03:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harryrose.dev/posts/</loc>
+    <lastmod>2020-05-09T04:03:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harryrose.dev/tags/</loc>
+    <lastmod>2020-05-09T04:03:43+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harryrose.dev/posts/csharp-nullables/</loc>
+    <lastmod>2020-05-09T04:03:43+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://harryrose.dev/about/</loc>
     <lastmod>2020-05-09T02:49:38+01:00</lastmod>
   </url>
@@ -14,10 +34,6 @@
   
   <url>
     <loc>https://harryrose.dev/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>https://harryrose.dev/tags/</loc>
   </url>
   
 </urlset>

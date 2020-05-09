@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Harry Rose</title>
-    <link>https://harryrose.dev/</link>
-    <description>Recent content on Harry Rose</description>
+    <title>Posts on Harry Rose</title>
+    <link>https://harryrose.dev/posts/</link>
+    <description>Recent content in Posts on Harry Rose</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 09 May 2020 02:49:38 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 09 May 2020 04:03:43 +0100</lastBuildDate>
     
-	<atom:link href="https://harryrose.dev/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://harryrose.dev/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -177,65 +177,6 @@ Classes must provide non null default values for their members, either via const
 &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;WarningsAsErrors&amp;gt;&lt;/span&gt;CS8600;CS8602;CS8603;CS8601;CS8618;CS8604&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;/WarningsAsErrors&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://harryrose.dev/about/</link>
-      <pubDate>Sat, 09 May 2020 02:49:38 +0100</pubDate>
-      
-      <guid>https://harryrose.dev/about/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;m a programmer currently living in Brighton, England.
-I&amp;rsquo;ve been working professionally in the games industry since 2014.&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;h1 id=&#34;unity&#34;&gt;Unity&lt;/h1&gt;
-&lt;p&gt;Currently I&amp;rsquo;m working as a Senior Software Developer at &lt;a href=&#34;https://unity.com/&#34;&gt;Unity Technologies&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;In my roles within Unity I&amp;rsquo;ve worked in many different areas, mainly focusing on performance, optimisation and serialization.
-I&amp;rsquo;m now focusing my attention on building the best possible internal tools and services for our developers&lt;/p&gt;
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/1Gj9X9EQrBQ&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&#34;off-grid&#34;&gt;Off Grid&lt;/h1&gt;
-&lt;p&gt;2016 - 2017&lt;/p&gt;
-&lt;p&gt;As a programmer on the upcoming game Off Grid I oversaw the transition of the codebase from a prototype to a more robust and scalable framework and lead the creation of the games extensive modding tools, which I delivered a technical talk on at Develop: Brighton in 2017&lt;/p&gt;
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/VEQFje7WAU4&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&#34;feral-interactive&#34;&gt;Feral interactive&lt;/h1&gt;
-&lt;h2 id=&#34;grid-autosport&#34;&gt;Grid Autosport&lt;/h2&gt;
-&lt;p&gt;Lead the addition of the Android platform to Feral&amp;rsquo;s internal libraries to support the port of Grid Autosport to the Android ecosystem
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/KkoF95CVZIw&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-&lt;/p&gt;
-&lt;h2 id=&#34;alien-isolation---the-collection&#34;&gt;Alien: Isolation™ - The Collection&lt;/h2&gt;
-&lt;p&gt;I was the Lead Developer on the macOS and Linux port of Alien Isolation.
-Currently available on &lt;a href=&#34;http://store.steampowered.com/app/214490/&#34;&gt;Steam&lt;/a&gt; and the &lt;a href=&#34;https://apps.apple.com/us/app/alien-isolation-collection/id973568088&#34;&gt;Mac App Store&lt;/a&gt;&lt;/p&gt;
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/SUX25d0pZy8&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&#34;dirt-3-complete-edition&#34;&gt;DiRT 3 Complete Edition&lt;/h2&gt;
-&lt;p&gt;I was a Developer on the macOS port of DiRT 3 and had a part in transitioning the game from Games For Windows Live to Steam&lt;/p&gt;
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/ugnzfvJ_bAo&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&#34;black--white-2&#34;&gt;Black &amp;amp; White 2&lt;/h2&gt;
-&lt;p&gt;I was a Developer on the 2014 macOS port of Black &amp;amp; White 2
-
-&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
-  &lt;iframe src=&#34;https://www.youtube.com/embed/pY846hYE4Xs&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-&lt;/p&gt;
 </description>
     </item>
     

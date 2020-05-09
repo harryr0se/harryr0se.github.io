@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="Harry Rose">
+    <meta name="description" content="’Tis impossible to be sure of any thing but Death, Taxes and NullReferenceException">
+    <meta name="keywords" content="blog,developer,personal">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Thoughts on C# 8 nullable references"/>
+<meta name="twitter:description" content="’Tis impossible to be sure of any thing but Death, Taxes and NullReferenceException"/>
+
+    <meta property="og:title" content="Thoughts on C# 8 nullable references" />
+<meta property="og:description" content="’Tis impossible to be sure of any thing but Death, Taxes and NullReferenceException" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://harryrose.dev/posts/csharp-nullables/" />
+<meta property="article:published_time" content="2020-05-09T04:03:43+01:00" />
+<meta property="article:modified_time" content="2020-05-09T04:03:43+01:00" />
+
+
+    
+      <base href="https://harryrose.dev/posts/csharp-nullables/">
+    
+    <title>
+  Thoughts on C# 8 nullable references · Harry Rose
+</title>
+
+    
+      <link rel="canonical" href="https://harryrose.dev/posts/csharp-nullables/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://harryrose.dev/css/coder.min.a4f332213a21ce8eb521670c614470c58923aaaf385e2a73982c31dd7642decb.css" integrity="sha256-pPMyITohzo61IWcMYURwxYkjqq84XipzmCwx3XZC3ss=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+      
+        
+        
+        <link rel="stylesheet" href="https://harryrose.dev/css/coder-dark.min.e78e80fc3a585a4d1c8fc7f58623b6ff852411e38431a9cd1792877ecaa160f6.css" integrity="sha256-546A/DpYWk0cj8f1hiO2/4UkEeOEManNF5KHfsqhYPY=" crossorigin="anonymous" media="screen" />
+      
+    
+
+    
+      <link rel="stylesheet" href="https://harryrose.dev/css/custom.css" />
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://harryrose.dev/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://harryrose.dev/img/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.70.0" />
+  </head>
+
+  
+  
+    
+  
+  <body class="colorscheme-dark">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://harryrose.dev/">
+      Harry Rose
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://harryrose.dev/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://harryrose.dev/about/">About</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Thoughts on C# 8 nullable references</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2020-05-09T04:03:43&#43;01:00'>
+                May 9, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              5-minute read
+            </span>
+          </div>
+          
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="https://harryrose.dev/tags/csharp/">csharp</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        <p>Recently I started working on a new C# project and was introduced by a colleague to C# 8&rsquo;s new <a href="https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references">nullable references</a> feature.</p>
+<p>At first this statement might sound odd (<em>it did to me</em>), reference types within C# have always been nullable, right?
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">// Tada, a null string!
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">string</span> myNullString = <span style="color:#66d9ef">null</span>;
+</code></pre></div></p>
+<p>However, the key behind the new feature is <em>not</em> to enable reference types to <em>be</em> nullable, but to make your code more explicit about <em>which</em> reference type variables can be null.</p>
+<p>In fact, that little snippet above actually provides the following compiler warning when enabled using the new feature.</p>
+<p><code>&quot;Converting null literal or possible null value to non-nullable type.&quot;</code></p>
+<h2 id="so-what-do-i-do">So what do I do?</h2>
+<p>In order to get rid of the new compiler warning we now have to use the <code>?</code> operator after the type name, this marks the variable as being nullable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">// Tada, an explicitly nullable string!
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">string?</span> myNullString = <span style="color:#66d9ef">null</span>;
+</code></pre></div>
+<p>But it does a lot more than that!</p>
+<p>Now code that makes use of that variable will have new warnings if they don&rsquo;t check the variable for null, or try to pass it to use that states it wants a non nullable <code>string</code> type</p>
+<p>For example lets look at this fascinating function:
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span>[] SplitString(<span style="color:#66d9ef">string</span> str)
+{
+    <span style="color:#66d9ef">return</span> str.Split(<span style="color:#e6db74">&#34;,&#34;</span>);
+}
+</code></pre></td></tr></table>
+</div>
+</div></p>
+<p>In normal C# the following function can be called with either a valid or null string, it&rsquo;s up to the implementation to decide how it handles null input and it&rsquo;s up to the user to decide if they&rsquo;re going to make sure they pass a valid string.</p>
+<p>If we now head back to the world of nullable references with this code:</p>
+<p><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">string</span> myNullString = <span style="color:#66d9ef">null</span>;
+SplitString(myNullString);
+</code></pre></td></tr></table>
+</div>
+</div>
+We get the following compiler warning:</p>
+<p><code>Possible null reference argument for parameter 'str' in 'project.SplitString'.</code></p>
+<p>A nice, clear warning that <code>SplitString</code> has explicitly indicated that it wants a valid string,
+If we want to update <code>SplitString</code> to state that it&rsquo;s happy to deal with null strings to, then we simply change  parameter <code>str</code> type to <code>string?</code></p>
+<h2 id="why">Why?</h2>
+<p>I&rsquo;ve personally seen the following benefits of the new feature in my new project:</p>
+<h3 id="more-explicit-intent">More explicit intent</h3>
+<p>It allows you to be clear about the expectations of your code, you either expect input of a nullable type or you don&rsquo;t.
+Same goes for return types, you can now be much clearer that a function may return null in certain circumstances.</p>
+<p>The expectations are baked into the types of our interface/api rather than in the documentation.</p>
+<p>For example:
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Database</span>
+{
+    Item? GetItemById(<span style="color:#66d9ef">int</span> id);
+}
+</code></pre></td></tr></table>
+</div>
+</div>
+The fact that <code>GetItemById</code> can return null is clear, if we weren&rsquo;t using nullables, users would have to look at the documentation for the function to work out if they needed to handle null results and the compiler wouldn&rsquo;t be able to provide them with warnings.</p>
+<h3 id="it-forces-you-to-handle-nullable-paths">It forces you to handle nullable paths</h3>
+<p>Due to the compilers code analysis, if you have warnings as errors (<em>like we do</em>); the new feature forces you to consider your dataflow better.</p>
+<p><div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> item = Database.GetItemById(<span style="color:#ae81ff">123</span>);
+SplitString(item.Name);
+</code></pre></td></tr></table>
+</div>
+</div>
+<code>Dereference of a possibly null reference.</code></p>
+<p>Now we&rsquo;re warned about our usage we must decide howe we want to deal with conditions.</p>
+<h3 id="enforces-types-to-be-valid-upon-construction">Enforces types to be valid upon construction</h3>
+<p>Due to the fact that all non nullable reference types must be initialized (otherwise they&rsquo;ll default to null).
+Classes must provide non null default values for their members, either via constructors (<em>my preferred method</em>) or by default values at the member level</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Item</span>
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Name { <span style="color:#66d9ef">get</span>; }
+}
+</code></pre></td></tr></table>
+</div>
+</div>
+<p><code>Non-nullable property 'Name' is uninitialized. Consider declaring the property as nullable.</code></p>
+<p>If we&rsquo;re really happy with an item optionally having a name then we can change it to <code>string?</code> otherwise, we must make sure that an Item has a defined non null <code>Name</code> upon construction</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Item</span>
+{
+    <span style="color:#66d9ef">public</span> Item(<span style="color:#66d9ef">string</span> name)
+    {
+        Name = name;
+    }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Name { <span style="color:#66d9ef">get</span>; }
+}
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>I&rsquo;ve found that using the constructor to fix this warning has created (<em>in my project</em>) a move closer towards types being immutable after creation and made it clearer where a types properties and fields are mutated.</p>
+<h2 id="gotchas">Gotchas</h2>
+<p>I&rsquo;m a pretty big fan of the new feature, I can&rsquo;t imagine I&rsquo;ll start a new C# project without it from now on. But it did have a few points that confused me at the start.</p>
+<p>Hopefully they&rsquo;ll help clear things up for you too 😊</p>
+<h3 id="its-entirely-syntactic-sugar">It&rsquo;s entirely syntactic sugar</h3>
+<p>None of the above examples will stop a non nullable type from being null, this is a feature that enables better warnings at compilation time.</p>
+<p>From the Microsoft <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types">documentation</a>:</p>
+<blockquote>
+<p>There&rsquo;s no runtime difference between a non-nullable reference type and a nullable reference type. The compiler doesn&rsquo;t add any runtime checking for non-nullable reference types.</p>
+</blockquote>
+<h3 id="its-not-about-removing-nulls-its-about-declaring-intent">It&rsquo;s not about removing nulls, it&rsquo;s about declaring intent</h3>
+<p>As mentioned in this Microsoft <a href="https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references">documentation</a>, it&rsquo;s best not to think of this feature as a means of removing null from your code. It&rsquo;s better to think of it as an addition to your toolbox for creating high quality code.</p>
+<blockquote>
+<p>Don&rsquo;t use this feature to remove all null values from your code. Rather, you should declare your intent to the compiler and other developers that read your code</p>
+</blockquote>
+<h3 id="warningsaserrors-project-setting-doesnt-work">WarningsAsErrors project setting doesn&rsquo;t work</h3>
+<p>We found that enabling the <code>&lt;WarningsAsErrors&gt;true&lt;/WarningsAsErrors&gt;</code> setting in our C# project file still didn&rsquo;t flag the nullable warnings as error and had to add them manually, here&rsquo;s what we have in our projects.</p>
+<div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;LangVersion&gt;</span>8<span style="color:#f92672">&lt;/LangVersion&gt;</span>
+<span style="color:#f92672">&lt;Nullable&gt;</span>enable<span style="color:#f92672">&lt;/Nullable&gt;</span>
+<span style="color:#f92672">&lt;WarningsAsErrors&gt;</span>true<span style="color:#f92672">&lt;/WarningsAsErrors&gt;</span>
+<span style="color:#f92672">&lt;WarningsAsErrors&gt;</span>CS8600;CS8602;CS8603;CS8601;CS8618;CS8604<span style="color:#f92672">&lt;/WarningsAsErrors&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+      
+      
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    
+
+  </body>
+
+</html>
